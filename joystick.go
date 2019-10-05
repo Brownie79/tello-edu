@@ -83,14 +83,14 @@ func printJoystickHelp() {
 	fmt.Print(
 		`TelloTerm Joystick Control Mapping
 
-Right Stick  Forward/Backward/Left/Right
-Left Stick   Up/Down/Turn
-Triangle     Takeoff
-X            Land
-Circle       
-Square       Take Photo
-L1           Bounce (on/off)
-L2           Palm Land
+		Right Stick  Forward/Backward/Left/Right
+		Left Stick   Up/Down/Turn
+		Triangle     Takeoff
+		X            Land
+		Circle       
+		Square       Take Photo
+		L1           Bounce (on/off)
+		L2           Palm Land
 `)
 }
 
