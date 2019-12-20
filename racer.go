@@ -78,11 +78,11 @@ func readJoystick(jsid int, tello *tello.Driver) {
 		}
 		if jsState.Buttons&(1<<btnB) != 0 && prevState.Buttons&(1<<btnB) == 0 {
 			log.Println("B pressed")
-			tello.Land()
+			tello.FrontFlip()
 		}
 		if jsState.Buttons&(1<<btnY) != 0 && prevState.Buttons&(1<<btnY) == 0 {
 			log.Println("Y pressed")
-			tello.Land()
+			tello.BackFlip()
 		}
 		//log.Println(jsState.Buttons)
 		// END BUTTON HANDLER
