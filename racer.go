@@ -10,19 +10,38 @@ import (
 	"gobot.io/x/gobot"
 )
 
+const (
+	ipAstroboy = "10.0.0.151:8889"
+	ipRobo     = "10.0.0.152:8889"
+)
+
 func main() {
+	print()
+
 	// port 8889 is the one on which it recieves instructions, 8888 is where it replies
-	drone0 := tello.NewEDUDriver("10.0.0.196:8889", "8888")
-	work := func() {
+	drone0 := tello.NewEDUDriver(ipAstroboy, "8888")
+	work0 := func() {
 		drone0.SendCommand("command")
 		readJoystick(0, drone0)
 	}
-	racer0 := gobot.NewRobot("Racer1",
+	racer0 := gobot.NewRobot("Astroboy",
 		[]gobot.Connection{},
 		[]gobot.Device{drone0},
-		work,
+		work0,
 	)
 	racer0.Start()
+
+	// drone1 := tello.NewEDUDriver(ipRobo, "8888")
+	// work1 := func() {
+	// 	drone0.SendCommand("command")
+	// 	readJoystick(1, drone1)
+	// }
+	// racer1 := gobot.NewRobot("Robo",
+	// 	[]gobot.Connection{},
+	// 	[]gobot.Device{drone1},
+	// 	work1,
+	// )
+	// racer1.Start()
 
 }
 
@@ -64,6 +83,9 @@ func readJoystick(jsid int, tello *tello.Driver) {
 		jsState, err = js.Read()
 		if err != nil {
 			log.Printf("Error reading joystick: %v\n", err)
+		} else {
+			log.Print(jsState.AxisData)
+			log.Print(jsState.Buttons)
 		}
 
 		/// BUTTON HANDLERS
